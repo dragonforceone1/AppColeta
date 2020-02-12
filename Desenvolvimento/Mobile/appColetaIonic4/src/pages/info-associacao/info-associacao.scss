@@ -1,0 +1,46 @@
+page-info-associacao {
+        
+        .new-background {
+            background-color: blue($color: #0a0a1a)
+          }
+        ion-icon {
+            display: inline-block;
+            font-size: 1.5em;
+          }
+        .InfoAssociacao{
+            background:#29bf21;
+            height: 250px;
+            max-width: 100%;
+            border: 0;
+            width: 100%;
+            position: absolute;
+            nav-up: 0;
+            left: 0;
+            
+        }
+       
+        ion-chip { 
+           padding-left: 20px;
+           padding-top: 10px;
+        }
+        ion-chip ion-avatar {
+            width: 90px;    
+            height: 90px;
+        }
+        ion-chip h2{
+            padding: 20px;
+        }
+        .info p{
+            color: black;
+            font-weight: bold;
+        }
+        .InfoAssociacao p{
+            padding: 70px 40px;    
+            text-align: center;
+            color: white;
+        }
+        .info{
+            padding-bottom: 15px;
+        }
+}
+    

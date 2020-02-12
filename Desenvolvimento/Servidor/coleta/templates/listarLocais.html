@@ -1,0 +1,122 @@
+{% extends 'base.html'   %}
+
+{% block main %}
+
+<style>
+    .headTable {
+        font-weight: bold;
+        font-size: x-large;
+        position: relative;
+        left: 15%;
+    }
+</style>
+
+    <br>
+    <label style="font-weight: bolder; font-size: xx-large; left: 100px; position: relative; width: 35%">Locais de Ponto de Coleta</label>
+    <br>
+    <br>
+
+    <div class="container" style="width: 80%; margin-right: 5%; margin-left: 5%">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <label class="headTable">Informações</label>
+                    </th>
+                    <th scope="col">
+                        <label class="headTable">Rótulo</label>
+                    </th>
+                    {% if admin == 1 %}
+                        <th scope="col">
+                            <label class="headTable">Gerenciar</label>
+                        </th>
+                        <th scope="col">
+                            <label class="headTable">Editar</label>
+                        </th>
+                        <th scope="col">
+                            <label class="headTable">Excluir</label>
+                        </th>
+                    {% else %}
+                        <th scope="col">
+                            <label class="headTable">Informações Sobre o Tipo de Local</label>
+                        </th>
+                    {% endif %}
+                </tr>
+            </thead>
+                <tbody>
+                    {% for local in locais %}
+                        <tr>
+                            <th scope="row">
+                                <a href="{% url 'info' local.id %}" class="btn btn-info btn-lg" style="background-color: #4f57d0;
+                                position: relative; left: 40%; font-size: large">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </a>
+                            </th>
+                            <td>
+                                <label href="{% url 'info' local.id %}" style="font-size: large;">{{ local.rotulo }}</label>
+                            </td>
+                            {% if admin == 1 %}
+                                <td>
+                                    <a href="{% if local.tipoLocal == 1 %}
+                                                {% url 'gerenciarLocal' local.id %}
+                                             {% elif local.tipoLocal == 2 %}
+                                                {% url 'gerenciarPev' local.id %}
+                                             {% else %}
+                                                {% url 'gerenciarUnid' local.id %}
+                                             {% endif %}"
+                                        class="btn btn-info btn-lg" style="background-color: #00d000; left: 25%; font-size: large; position: relative">
+                                        <span class="glyphicon glyphicon-cog">
+                                            {% if local.tipoLocal == 1 %}
+                                                PAP
+                                            {% elif local.tipoLocal == 2 %}
+                                                PEV
+                                            {% else %}
+                                                ASS
+                                            {% endif %}
+                                        </span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'editar' local.id %}" class="btn btn-info btn-lg" style="background-color: gold; left: 30%; font-size: large; position: relative">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                <td>
+                                    <a href="{% url 'excluir' local.id %}" class="btn btn-info btn-lg" style="background-color: red; position: relative; left: 40%; font-size: large;">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </td>
+                            {% else %}
+                                <td>
+                                    <a href="{% if local.tipoLocal == 1 %}
+                                                {% url 'gerenciarLocal' local.id %}
+                                             {% elif local.tipoLocal == 2 %}
+                                                {% url 'infoPev' local.id %}
+                                             {% else %}
+                                                {% url 'gerenciarUnid' local.id %}
+                                             {% endif %}"
+                                        class="btn btn-info btn-lg" style="background-color: #00d000; left: 25%; font-size: large; position: relative">
+                                        <span class="glyphicon glyphicon-cog">
+                                            {% if local.tipoLocal == 1 %}
+                                                PAP
+                                            {% elif local.tipoLocal == 2 %}
+                                                LEV
+                                            {% else %}
+                                                ASS
+                                            {% endif %}
+                                        </span>
+                                    </a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{% endblock %}

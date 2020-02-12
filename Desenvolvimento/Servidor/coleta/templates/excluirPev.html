@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <br>
+    <h1>{% if excluir == 1 %} Excluir {% else %} Informações Sobre {% endif %}Entrega Voluntária</h1>
+    <br>
+
+    <div class="container" style="padding: 1%">
+        <div class="row">
+            <div class="col" style="font-size: large">
+                <label for="id_rotul"> Rótulo: </label>
+                <br>
+                <input id="id_rotul" class="formStyle" name="rotulo" type="text" readonly placeholder="Rótulo único"/>
+                <br>
+                <br>
+                <label for="id_diasFuncionament"> Dias de Funcionamento: </label>
+                <br>
+                <input id="id_diasFuncionament" required class="formStyle" type="text" readonly/>
+                <br>
+                <br>
+                <label for="id_horarioFuncionament"> Horário de Funcionamento: </label>
+                <br>
+                <input id="id_horarioFuncionament" required class="formStyle" type="text" readonly/>
+                <br>
+                <br>
+                <br>
+
+                <a href="{% url 'listarAdmin' %}" class="btn btn-primary" id="btn_cancelar" style="width: 100px;
+                font-size: large; position: relative; left: 30%;"> {% if excluir == 1 %} Cancelar {% else %} Voltar {% endif %}</a>
+
+                {% if excluir == 1 %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" id="btn_salvar" type="submit" style="width: 100px; font-size: large; position: relative; left: 60%; top: -36px;" > Excluir </button>
+                    </form>
+                {% endif %}
+
+                {% if admin == 1 %}
+                    <a href="{% url 'editarPev' id %}" class="btn btn-info btn-lg" style="background-color: gold; left: 35%; font-size: large; position: relative">
+                        <span class="glyphicon glyphicon-pencil"> Editar </span>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-6" id="map" style="height: 500px">
+                <script
+                    src="https://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous">
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        document.getElementById('id_rotul').value = "{{ rotulo }}";
+        document.getElementById('id_diasFuncionament').value = '{{ dia }}'
+        document.getElementById('id_horarioFuncionament').value = '{{ hora }}'
+
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: {lat: {{ lat }}, lng: {{ lng }} }
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: {{ lat }}, lng: {{ lng }} },
+                map: map,
+                title: '{{ rotulo }}'
+            });
+        }
+
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap"
+        async defer>
+    </script>
+
+{% endblock %}

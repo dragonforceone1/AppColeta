@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <br>
+    <h1>Cadastro de Locais</h1>
+    <br>
+
+    <div class="container" style="padding: 1%">
+        <div class="row">
+            <div class="col" style="font-size: large">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="id_tipoLoca">Selecione o Tipo:</label>
+                    <br>
+                    <select {% if confirma == 1 %}disabled{% endif %} name="tipoLocal" class="formStyle" id="id_tipoLoca" onclick="preencheForm()">
+                        <option value="2"> Ponto de Entrega Voluntária </option>
+                        <option value="3"> Associação </option>
+                        <option value="1"> Porta a Porta </option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="id_rotul">Insira um Rótulo:</label>
+                    <br>
+                    <input {% if confirma == 1 %}disabled{% endif %} id="id_rotul" onchange="preencheForm()" class="formStyle" name="rotulo" type="text" required placeholder="Rótulo único"/>
+                    <br>
+                    <br>
+                    <label for="id_cidad">Insira a Cidade:</label>
+                    <br>
+                    <input {% if confirma == 1 %}disabled{% endif %} id="id_cidad" onchange="preencheForm()" required class="formStyle" name="cidade" type="text" />
+                    <br>
+                    <br>
+                    <label for="id_logradour">Insira o Logradouro:</label>
+                    <br>
+                    <input {% if confirma == 1 %}disabled{% endif %} id="id_logradour" onchange="preencheForm()" required class="formStyle" name="logradouro" type="text" />
+                    <br>
+                    <br>
+                    <label for="id_numer" id="lbl_numer" >Insira o Número:</label>
+                    <br>
+                    <input {% if confirma == 1 %}disabled{% endif %} id="id_numer" onchange="preencheForm()" class="formStyle" name="numero" required type="number"/>
+                    <br>
+                    <br>
+
+                    <button {% if confirma == 1 %}formmethod="get" href="{% url 'cadastro' %}"{% endif %} class="btn btn-primary" id="btn_pesquisar" type="submit" style="width: 100px; font-size: large; position: relative; left: 40px;">
+                        {% if confirma != 1 %}
+                            Pesquisar
+                        {% else %}
+                            Editar
+                        {% endif %}
+                    </button>
+                    <input name="local" id="id_local" style="visibility: hidden;"/>
+
+                    <button class="btn {% if confirma != 1 %}btn-outline-secondary" disabled{% else %}btn-success"{% endif %} id="btn_salvar" type="submit" style="width: 100px; font-size: large; position: relative;" onclick="existe()"> Salvar </button>
+                    <div style="visibility: hidden;">
+                        {{ form }}
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-6" id="map" style="height: 500px">
+                <script
+                    src="https://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous">
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function preencheForm() {
+            document.getElementById('id_tipoLocal').value = document.getElementById('id_tipoLoca').value;
+            document.getElementById('id_cidade').value = document.getElementById('id_cidad').value;
+            document.getElementById('id_rotulo').value = document.getElementById('id_rotul').value;
+            document.getElementById('id_logradouro').value = document.getElementById('id_logradour').value;
+            document.getElementById('id_numero').value = document.getElementById('id_numer').value;
+            document.getElementById('id_latitude').value = 0;
+            document.getElementById('id_longitude').value = 0;
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap"
+        async defer>
+    </script>
+
+    <script>
+        function initMap() {
+            {% if confirma == 1 %}
+                document.getElementById('id_tipoLoca').value = document.getElementById('id_tipoLocal').value;
+                document.getElementById('id_cidad').value = document.getElementById('id_cidade').value;
+                document.getElementById('id_rotul').value = document.getElementById('id_rotulo').value;
+                document.getElementById('id_logradour').value = document.getElementById('id_logradouro').value;
+                document.getElementById('id_numer').value = document.getElementById('id_numero').value;
+
+                var myLatLng = { lat: -19, lng: -44 };
+                var urlFinal = "https://maps.googleapis.com/maps/api/geocode/json?address={{ endereco }}+&key={{ key }}";
+                var inserido = 0;
+
+
+                $.ajax({
+                    type: "get",
+                    dataType: "json",
+                    url: urlFinal,
+                    success: function (data) {
+                        myLatLng.lat = data.results[0].geometry.location.lat;
+                        document.getElementById('id_latitude').value = myLatLng.lat;
+                        myLatLng.lng = data.results[0].geometry.location.lng;
+                        document.getElementById('id_longitude').value = myLatLng.lng;
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 19,
+                            center: myLatLng
+                        });
+                        var marker = new google.maps.Marker({
+                            position: myLatLng,
+                            map: map,
+                            title: "{{ rotulo }}"
+                        });
+                        inserido = 1;
+                    }
+                });
+
+                setTimeout(
+                    function () {
+                        if (inserido == 0){
+                            map = new google.maps.Map(document.getElementById('map'), {
+                                center: {lat: -19, lng: -44},
+                                zoom: 15
+                            });
+                            alert('Não foi possível encontrar um endereço com as informações inseridas, sugerimos' +
+                                ' fortemente que você revise as informações antes de salvar.');
+                            document.getElementById('id_latitude').value = myLatLng.lat;
+                            document.getElementById('id_longitude').value = myLatLng.lng;
+                        }
+                    }, 1000
+                );
+            {% else %}
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -19, lng: -44},
+                    zoom: 15
+                });
+            {% endif %}
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block main %}
+
+    <br>
+    <h1>{% if excluir == 1 %} Excluir {% else %} Informações Sobre {% endif %}Unidade</h1>
+    <br>
+    <br>
+
+    <div class="container" style="padding: 1%">
+        <div class="row">
+            <div class="col" style="font-size: large">
+                <label>Local: </label>
+                <br>
+                <input class="formStyle" id="id_Local_i" readonly>
+                <br>
+                <br>
+                <label>Associação: </label>
+                <br>
+                <input id="id_Associacao_i" value="{{ associacao }}" class="formStyleDiv1" readonly>
+                <label>Sede: </label>
+                <input type="checkbox" class="formStyleDiv2" style="width: 30px; height: 30px; position: relative; top: 10px" id="id_sed" {% if sede %}checked{% endif %} disabled>
+                <br>
+                <br>
+                <label>Horario de Funcionamento: </label>
+                <br>
+                <input class="formStyle" id="id_horarioFuncionament" value="{{ horario }}" readonly>
+                <br>
+                <br>
+                <label>Quantidade de Catadores: </label>
+                <br>
+                <input class="formStyle" id="id_quantidadeCatadore" value="{{ qntCatadores }}" readonly>
+                <br>
+                <br>
+                <label>Dias de Funcionamento: </label>
+                <br>
+                <input class="formStyle" id="id_diasFuncionament" value="{{ dias }}" readonly>
+                <br>
+                <br>
+
+                {% if excluir == 1  %}
+                    <a href="{% url 'listarAdmin' %}" class="btn btn-danger" style="width: 100px; font-size: large; position: relative; left: 40px;"> Cancelar </a>
+                {% else %}
+                    {% if admin %}
+                        <a href="{% url 'listarAdmin' %}" class="btn btn-primary" style="width: 100px; font-size: large; position: relative; left: 150px;"> Voltar </a>
+                        <a href="{% url 'editarUnid' id %}" class="btn btn-info" style="background-color: gold; width: 100px; font-size: large; position: relative; left: 200px;"> Editar </a>
+                    {% else %}
+                        <a href="{% url 'listarAdmin' %}" class="btn btn-primary" style="width: 100px; font-size: large; position: relative; left: 200px;"> Voltar </a>
+                    {% endif %}
+                {% endif %}
+
+                {% if excluir == 1 %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" id="btn_excluir" type="submit" style="width: 100px; font-size: large; position: relative; left: 200px; top: -36px;" > Excluir </button>
+                    </form>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-6" id="map" style="height: 500px">
+                <script
+                    src="https://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous">
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function initMap() {
+            document.getElementById('id_Local_i').value = '{{ local }}';
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: {lat: {{ lat }}, lng: {{ lng }} }
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: {{ lat }}, lng: {{ lng }} },
+                map: map,
+                title: '{{ rotulo }}'
+            });
+        }
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap"
+        async defer>
+    </script>
+
+{% endblock %}

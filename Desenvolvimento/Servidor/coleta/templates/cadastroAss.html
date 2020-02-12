@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+    <br>
+    <h1>Cadastro de Associações</h1>
+    <br>
+    <br>
+
+     <div class="container" style="font-size: large">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    {{ form.nome|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ form.cnpj|as_crispy_field }}
+                </div>
+            </div>
+
+            {{ form.logo|as_crispy_field }}
+            {{ form.fotoCatadores|as_crispy_field }}
+            {{ form.anoFundacao|as_crispy_field }}
+            {{ form.descricao|as_crispy_field }}
+            {% if excluir == 1 %}
+                <button type="submit" class="btn btn-danger" style="font-size: large"> Excluir </button>
+            {% elif excluir == 0 %}
+                <a href="{% url 'listarAdmin' %}" class="btn btn-primary" style="font-size: large"> Voltar </a>
+            {% else %}
+                <button type="submit" class="btn btn-success" style="font-size: large"> Salvar </button>
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock %}

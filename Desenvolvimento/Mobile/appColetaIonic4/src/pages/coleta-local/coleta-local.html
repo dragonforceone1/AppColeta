@@ -1,0 +1,29 @@
+<!--
+  Generated template for the ColetaLocalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="navbar">
+    <ion-title>Informações sobre Coleta</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+  
+<div  class="card">
+    <h3>{{nomeLocal}}</h3>
+  <div class="item item-text-wrap" *ngFor="let coleta1 of coleta">
+    
+      <ion-toolbar color="primary">
+        <ion-title>{{coleta1.diaSemana}}</ion-title>
+      </ion-toolbar>
+      <p class="content"> <strong>Turno:</strong> {{coleta1.turno}}</p>
+      <p class="content"> <strong>Tipo de lixo:</strong> {{coleta1.tipoLixo}} </p>
+    </div>
+  </div>
+</ion-content>

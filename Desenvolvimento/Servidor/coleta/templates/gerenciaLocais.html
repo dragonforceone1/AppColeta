@@ -1,0 +1,165 @@
+{% extends 'base.html'   %}
+
+{% block main %}
+    <style>
+        .opcao{
+            width: 100px;
+        }
+    </style>
+
+    <h1 style="font-weight: bolder; position: relative; left: 5%">
+        Gerenciamento de Coleta
+    </h1>
+    <br>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label  style="left: 50px; position: relative">Rótulo: </label>
+        <input id="id_rotulo" type="text" style="width: 400px; height: 35px; position: relative; left: 50px" readonly >
+        <label style="left: 80px; position: relative">Dia: </label>
+        <select id="id_diaSeman" style="left: 80px; position: relative; height: 35px" onclick="preencheForm()">
+            <option value="---">---</option>
+            <option value="1">Domingo</option>
+            <option value="2">Segunda</option>
+            <option value="3">Terça</option>
+            <option value="4">Quarta</option>
+            <option value="5">Quinta</option>
+            <option value="6">Sexta</option>
+            <option value="7">Sabado</option>
+        </select>
+        <label style="left: 100px; position: relative">Turno: </label>
+        <select id="id_turn" style="left: 100px; position: relative; height: 35px" onclick="preencheForm()">
+            <option value="---">---</option>
+            <option value="1">Manhã</option>
+            <option value="2">Tarde</option>
+            <option value="3">Noite</option>
+        </select>
+        <button for="saveButton" class="btn btn-success" type="submit" style="left: 140px; position: relative;
+                                    width: 100px; height: 35px"> Salvar </button>
+        <br>
+        <br>
+
+
+        <script>
+            function preencheForm() {
+                document.getElementById('id_diaSemana').value = document.getElementById('id_diaSeman').value;
+                document.getElementById('id_turno').value = document.getElementById('id_turn').value;
+            }
+        </script>
+
+        <div class="divTable" style="height: 500px">
+            <div class="divTableBody">
+                <div class="divTableRow"><!-- formulario -->
+                    <div class="divTableCell">
+                        <table id="tablePreview" class="table" style="height: 400px;">
+                        <!--Table head-->
+                            <thead>
+                                <tr>
+                                    <th>Dia</th>
+                                    <th>Turno</th>
+                                </tr>
+                            </thead>
+                            <!--Table head-->
+                            <!--Table body-->
+                            <tbody>
+                                {% for horario in horarios %}
+                                    <tr>
+                                        <th scope="row">
+                                            {% if horario.diaSemana == 1 %}
+                                                <label>Domingo</label>
+                                            {% elif horario.diaSemana == 2 %}
+                                                <label>Segunda</label>
+                                            {% elif horario.diaSemana == 3 %}
+                                                <label>Terça</label>
+                                            {% elif horario.diaSemana == 4 %}
+                                                <label>Quarta</label>
+                                            {% elif horario.diaSemana == 5 %}
+                                                <label>Quinta</label>
+                                            {% elif horario.diaSemana == 6 %}
+                                                <label>Sexta</label>
+                                            {% else %}
+                                                <label>Sabado</label>
+                                            {% endif %}
+                                        </th>
+                                        <td>
+                                            {% if horario.turno == 1 %}
+                                                <label>Manha</label>
+                                            {% elif horario.turno == 2 %}
+                                                <label>Tarde</label>
+                                            {% else %}
+                                                <label>Noite</label>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        <!--Table body-->
+                        </table>
+                    </div>
+                    <!-- maps -->
+                    <div class="divTableCell" id="map">
+                        <script
+                            src="https://code.jquery.com/jquery-3.3.1.min.js"
+                            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                            crossorigin="anonymous">
+                        </script>
+
+                        <script
+                            src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap"
+                            async defer>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="visibility: hidden">
+            {{ form }}
+        </div>
+
+    </form>
+
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('id_rotulo').value = "{{ rotulo }}";
+        document.getElementById('id_Local_id').value = "{{ id }}";
+
+
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: {lat: {{ lat }}, lng: {{ lng }} }
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: {{ lat }}, lng: {{ lng }} },
+                map: map,
+                title: '{{ rotulo }}'
+            });
+        }
+
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap"
+        async defer>
+    </script>
+
+{% endblock  %}

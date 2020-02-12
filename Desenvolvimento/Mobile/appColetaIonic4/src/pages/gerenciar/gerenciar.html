@@ -1,0 +1,119 @@
+<!--
+  Generated template for the GerenciarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color = "navbar">
+    <ion-title>Gerenciar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+        <!--<ion-item>
+          <ion-avatar item-start>
+            <img src="{{ photo }}">
+          </ion-avatar>
+          <button ion-button color="secondary" clear (click)="presentPromptPic()"> Alterar Foto </button>
+          <button ion-button color="danger" clear> Remover Foto </button>
+        </ion-item>-->
+
+        <ion-item>
+            <ion-label>Visibilidade do Perfil</ion-label>
+            <ion-select [(ngModel)]="visibilidade_perfil">
+              <ion-option value="0">Privado</ion-option>
+              <ion-option value="1">Restrito</ion-option>
+              <ion-option value="2">Público</ion-option>
+            </ion-select>
+          </ion-item>
+
+        <ion-item>
+          <p>  <ion-icon name='md-contact' is-active="false"></ion-icon>  Nome   <b>{{usuario.getNome()}}</b></p>
+            <button ion-button color="secondary" clear (click)="presentPromptName()"> Alterar Nome </button>
+        </ion-item>
+
+        <ion-item>
+          <p>  <ion-icon name='mail' is-active="false"></ion-icon>  Email   <b>{{usuario.getEmail()}}</b></p>
+            <button ion-button color="secondary" clear clear (click)="presentPromptEmail()"> Alterar Email </button>
+        </ion-item>
+
+        <ion-item>
+          <p>  <ion-icon name='call' is-active="false"></ion-icon> Telefone/Celular</p>
+          <p>  <b>Telefone: </b>  {{usuario.getTelefone()}} </p>
+          <p>
+            <b>Celular:  </b>  {{usuario.getCelular()}}</p>
+            <p>
+            <button ion-button color="secondary" clear (click)="presentPromptTel()"> Alterar Contatos </button>
+         </p>
+        </ion-item>
+
+        <ion-item>
+          <p>  <ion-icon name='md-calendar' is-active="false"></ion-icon>  Data Nascimento <b>{{usuario.getDataNascimento()}}</b> </p>
+                <button ion-button color="secondary" clear (click)="presentPromptDate()"> Alterar Data de Nascimento </button>
+        </ion-item>
+
+
+        <ion-item>
+          <p>    <ion-icon name='home' is-active="false"></ion-icon>  Endereço</p>
+          <p>  <b>Logradouro: </b> {{usuario.getEndereco().getLogradouro()}}, {{usuario.getEndereco().getNumero()}}</p>
+          <p>  <b>Bairro: </b> {{usuario.getEndereco().getBairro()}} </p>
+          <p>  <b>Cidade: </b> {{usuario.getEndereco().getMunicipio().getNome()}}</p>
+          <p>  <b>Estado: </b> {{usuario.getEndereco().getMunicipio().getEstado().getNome()}} </p>
+          <p>  <b>País: </b> {{usuario.getEndereco().getMunicipio().getEstado().getPais().getNome()}} </p>
+          <button ion-button color="secondary" clear (click)="presentPromptAddress()"> Alterar  Endereço </button>
+          <button ion-button color="secondary" clear (click)="permiteMunicipio()"> Alterar  Município </button>
+        </ion-item>
+
+        <ion-item *ngIf="editar">
+          <ion-label>País</ion-label>
+          <ion-select [(ngModel)]='pais' (ionBlur)="alterarPais(); carregaEstado()">
+              <ion-option value="{{pais1.id}}" *ngFor="let pais1 of lista_paises ">{{pais1.nome}}</ion-option>
+          </ion-select>
+      </ion-item>
+      
+      <ion-item  *ngIf="editar">
+          <ion-label>Estado</ion-label>
+          <ion-select [(ngModel)]='estado' (ionBlur)="alterarEstado(); carregaMunicipio()">
+              <ion-option value="{{estado1.id}}" *ngFor="let estado1 of lista_estados ">{{estado1.nome}}</ion-option>
+          </ion-select>
+      </ion-item>
+
+      <ion-item  *ngIf="editar">
+              <ion-label>Município</ion-label>
+              <ion-select [(ngModel)]='municipio' (ionBlur) = "alterarMunicipio()">
+                  <ion-option value="{{municipio1.id}}" *ngFor="let municipio1 of lista_municipios ">{{municipio1.nome}}</ion-option>
+              </ion-select>
+          </ion-item>
+                
+      <!--<ion-item *ngIf="editar">
+        <button ion-button color="secondary" clear (click)="permiteMunicipio(false)"> Alterar  Município </button>
+      </ion-item>-->
+          
+      <ion-item>
+          <p>    <ion-icon name='md-unlock' is-active="false"></ion-icon>  Senha</p>
+          <button ion-button color="secondary" clear clear (click)="presentPromptSenha()"> Alterar Senha </button>
+      </ion-item>
+
+    </ion-list>
+
+    
+
+    <footer class="footer">
+        <button ion-button color="secondary" (click)="salvar()">
+          Salvar
+        </button>
+        <button ion-button color="fbblue" (click)="desconectar()" >
+          Sair
+        </button>
+        <button ion-button color="danger" (click)="excluir()">
+          Excluir Conta
+        </button>
+    </footer>
+
+</ion-content>

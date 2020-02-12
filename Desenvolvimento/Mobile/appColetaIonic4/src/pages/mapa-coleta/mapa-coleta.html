@@ -1,0 +1,39 @@
+<!--
+  Generated template for the MapaColetaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="navbar">
+    <ion-title>Coletas Póximas</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-input (keyup.enter)="pesquisaEndereco()" placeholder="Pesquisar local" type="text" [(ngModel)]="pesquisaPosition"
+      clearInput></ion-input>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div #map id="map"></div>
+
+</ion-content>
+
+<!-- BOTÃO QUE IRÁ APARECER AO CLICAR NO MAPA-->
+<button #info ion-button icon-only (click)="encaminhaPagina(textoBotao, tipo)" clear>{{textoBotao}}</button>
+
+<ion-footer>
+  <ion-toolbar color="navbar" >
+    <ion-segment (ionChange)="modoMapa($event)" id="segmento">
+      <ion-segment-button value="porta">
+        <ion-label>Coleta Porta a Porta</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Levs">
+        <ion-label> PEV's e Associações</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

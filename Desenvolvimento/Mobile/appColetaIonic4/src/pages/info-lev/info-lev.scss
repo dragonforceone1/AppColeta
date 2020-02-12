@@ -1,0 +1,32 @@
+page-info-lev {
+    .new-background {
+        background-color: blue($color: #0a0a1a)
+      }
+    .fixed-content{
+        background: #f6f6f6
+
+    }
+    img{
+        max-width: 100%;
+        border: 0;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    ion-icon {
+        display: inline-block;
+        font-size: 1.5em;
+      }
+    .info{
+        padding-bottom: 15px;
+    }
+    p{
+        color: #000;
+        font-weight: bold;
+    }
+    .info2{
+        padding-top: 40px;
+        padding-bottom: 35px;
+    }
+}

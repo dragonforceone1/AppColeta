@@ -1,0 +1,28 @@
+page-home {
+  ion-content {
+     background-image: url('../../assets/imgs/bg.png');
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+  }
+
+  img{
+    width: 70%;
+    height: 70%;
+    //centraliza
+    margin: auto;
+    display: block;
+  }
+
+  button{
+    width: 95%;
+    height: 40%;
+  }
+
+  ion-content div.top{
+      right: 90%;
+      clear: both;
+      width: 99%;
+      text-align: center;
+  }
+
+}

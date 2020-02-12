@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e99fc65a-f6ad-4d76-8138-8377538553bc" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.idea/Servidor.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/templates/cadastroLev.html" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/templates/cadastroPev.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/templates/cadastroLocais.html" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/templates/cadastroLocais.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/templates/cadastroUnid.html" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/templates/cadastroUnid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/templates/excluirLev.html" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/templates/excluirPev.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/templates/listarLocais.html" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/templates/listarLocais.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coleta/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/coleta/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/lev.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Pev.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/usuario.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../appColeta" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1StXYfO1ASfitldDrKhpyNIT6Yl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../CodigoFont/HealthyConnection/healthyconnection-dev" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Servidor" type="Python.DjangoServer" factoryName="Django server">
+      <module name="Servidor" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="config.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="Servidor" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e99fc65a-f6ad-4d76-8138-8377538553bc" name="Default" comment="" />
+      <created>1554412201444</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1554412201444</updated>
+      <workItem from="1555446329430" duration="1299000" />
+      <workItem from="1556210686394" duration="35000" />
+      <workItem from="1556282911521" duration="1308000" />
+      <workItem from="1556313547055" duration="48000" />
+      <workItem from="1556313596534" duration="3070000" />
+      <workItem from="1556317888190" duration="37000" />
+      <workItem from="1556385288131" duration="37000" />
+      <workItem from="1557361938268" duration="635000" />
+      <workItem from="1557371360379" duration="1188000" />
+      <workItem from="1557372663127" duration="700000" />
+      <workItem from="1557487451500" duration="35000" />
+      <workItem from="1558984466544" duration="4754000" />
+      <workItem from="1558992724558" duration="27000" />
+      <workItem from="1558992776316" duration="174000" />
+      <workItem from="1558993666411" duration="519000" />
+      <workItem from="1559018035939" duration="1584000" />
+      <workItem from="1559054152845" duration="705000" />
+      <workItem from="1559061484446" duration="7597000" />
+      <workItem from="1559073656632" duration="2696000" />
+      <workItem from="1559243374445" duration="89000" />
+      <workItem from="1559258364029" duration="375000" />
+      <workItem from="1559259445867" duration="715000" />
+      <workItem from="1559308084770" duration="3237000" />
+      <workItem from="1559324608765" duration="8746000" />
+      <workItem from="1559581876047" duration="259000" />
+      <workItem from="1559582136797" duration="2701000" />
+      <workItem from="1559586233792" duration="1035000" />
+      <workItem from="1559687716936" duration="2151000" />
+      <workItem from="1559734733829" duration="2725000" />
+      <workItem from="1559738287678" duration="74000" />
+      <workItem from="1559739462723" duration="573000" />
+      <workItem from="1559758213838" duration="13336000" />
+      <workItem from="1559784491151" duration="13000" />
+      <workItem from="1559784517309" duration="390000" />
+      <workItem from="1561044165954" duration="2283000" />
+      <workItem from="1561057805354" duration="5305000" />
+      <workItem from="1561143383851" duration="2729000" />
+      <workItem from="1561160797223" duration="43000" />
+      <workItem from="1561160855713" duration="376000" />
+      <workItem from="1561161286731" duration="20000" />
+      <workItem from="1572383917353" duration="41000" />
+      <workItem from="1572383978527" duration="1858000" />
+      <workItem from="1572386867606" duration="995000" />
+      <workItem from="1572387911197" duration="507000" />
+      <workItem from="1572454585408" duration="1985000" />
+      <workItem from="1572461385555" duration="5726000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/server/views.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

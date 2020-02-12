@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar color="dark_blue">
+    <ion-title>Local de Entrega Voluntária</ion-title>
+  </ion-navbar>
+  <style>
+    div {
+      color: gray;
+    }
+
+    .position {
+      object-position: center;
+    }
+
+  </style>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-icon class="info2" name="star-outline"> <strong>{{endereco.rotulo}}</strong></ion-icon>
+
+  <div class="info">
+    <ion-icon name="pin-outline"><strong> Endereço</strong></ion-icon>
+    <p>{{endereco.logradouro}}, {{endereco.numero}}, {{endereco.cidade}}</p>
+  </div>
+
+  <div class="info">
+    <ion-icon name="time-outline"><strong> Horário de funcionamento</strong></ion-icon>
+    <p>{{lev.horarioFuncionamento}}</p>
+  </div>
+
+
+  <div class="info">
+    <ion-icon name="calendar-outline"><strong> Dias de funcionamento</strong></ion-icon><br>
+    <p>{{lev.diasFuncionamento}}</p>
+  </div>
+
+  <img src="../assets/imgs/lixeiras.png">
+
+
+
+
+</ion-content>

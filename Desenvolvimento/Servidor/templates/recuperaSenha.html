@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+    <form method="post">
+        {% csrf_token %}
+         {{form}}
+        <label for="csenha"> Confirme a senha digitada: </label>
+        <input id="csenha" type="password" name="newpass" focus required maxlength="15" placeholder="Digite novamente a senha">
+        <button type="submit" name="btn-enviar" onclick="verificaSenha()"> Enviar </button>
+    </form>
+
+    <script>
+        function verificaSenha() {
+            if(document.getElementById('id_senha').value != document.getElementById('csenha').value){
+                alert('As senhas tem que ser iguais');
+            }
+        }
+    </script>
+
+
+{% endblock %}

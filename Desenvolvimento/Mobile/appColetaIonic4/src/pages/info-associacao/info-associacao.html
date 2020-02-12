@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar color="dark_blue">
+    <ion-title>
+      {{nomeunidade}}
+    </ion-title>
+  </ion-navbar>
+  <style>
+    div {
+      color: gray;
+    }
+
+    .position {
+      object-position: center;
+    }
+
+    span {
+      color: white;
+    }
+
+  </style>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="InfoAssociacao">
+    <ion-chip color="light_green">
+      <ion-avatar>
+        <img src="{{associacao.logo}}">
+      </ion-avatar>
+      <h2><strong>{{associacao.nome}}</strong></h2>
+    </ion-chip>
+    <p><strong>{{associacao.descricao}}</strong></p>
+  </div>
+
+
+  <div padding style="padding-top: 270px;">
+
+    <div class="info">
+      <ion-icon name="pin-outline"><strong> Endereço</strong></ion-icon>
+      <p> {{endereco.logradouro}}, {{endereco.numero}}, {{endereco.cidade}}</p>
+    </div>
+
+
+
+    <div class="info">
+      <ion-icon name="time-outline"><strong> Horário de funcionamento</strong></ion-icon>
+      <p> {{ unidade.horarioFuncionamento}}</p>
+    </div>
+
+
+
+
+    <div class="info">
+      <ion-icon name="calendar-outline"><strong> Dias de funcionamento</strong></ion-icon>
+      <p> {{ unidade.diasFuncionamento}}</p>
+    </div>
+
+    <img src="{{associacao.fotoCatadores}}" alt="FotoCatadores"> 
+
+  </div>
+
+
+</ion-content>

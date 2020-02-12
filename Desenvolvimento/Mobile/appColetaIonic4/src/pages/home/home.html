@@ -1,0 +1,31 @@
+
+<ion-content padding>
+
+  <div class="top" >
+    <ion-avatar item-start>
+      <img src="../../assets/imgs/IRR_transparente.png">
+    </ion-avatar>
+
+    <ion-label color="light" class = l1> <h1><b> App Coleta </b></h1> </ion-label>
+  </div>
+
+<div>
+  <ion-label color="light"> <h5>  Uma breve descricao sobre o sistema...  </h5></ion-label>
+
+  <ion-label color="light">
+    Continue com:
+  </ion-label>
+
+   <button large ion-button color="emailblack" (click)="goToLogin()" >EMAIL</button>
+ </div>
+ <div>
+   <button large ion-button color="fbblue" (click)="loginFacebook()">FACEBOOK</button>
+ </div>
+ <div>
+  <button large ion-button color="googlered" (click)="loginGoogle()">GOOGLE</button>
+</div>
+<div>
+ <button large ion-button color="seablue" (click)="loginVisitor()">VISITANTE</button>
+</div>
+
+</ion-content>

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <h1 style="font-weight: bolder; position: relative; left: 5%">Editar Local de Ponto de Coleta</h1>
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col" style="font-size: large">
+                <label for="id_tipoLoca">Selecione o Tipo:</label>
+                <select name="tipoLocal" class="formStyle" id="id_tipoLoca" onchange="preencheForm()">
+                    <option value="2"> Ponto de Entrega Voluntária</option>
+                    <option value="3"> Associação </option>
+                    <option value="1"> Porta a Porta</option>
+                </select>
+                <br>
+                <br>
+
+                <label for="id_rotul">Insira um Rótulo:</label>
+                <br>
+                <input id="id_rotul" class="formStyle" name="rotulo" type="text" required placeholder="Rótulo único" onchange="preencheForm()"/>
+                <br>
+                <br>
+
+                <label for="id_cidad">Insira a Cidade:</label>
+                <br>
+                <input id="id_cidad" required class="formStyle" name="cidade" type="text" onchange="preencheForm()"/>
+                <br>
+                <br>
+
+                <label for="id_logradour">Insira o Logradouro:</label>
+                <br>
+                <input id="id_logradour" required class="formStyle" name="logradouro" type="text" onchange="preencheForm()"/>
+                <br>
+                <br>
+
+                <label for="id_numer" id="lbl_numer">Insira o Numero:</label>
+                <br>
+                <input id="id_numer" class="formStyle" name="numero" required type="number" onchange="preencheForm()"/>
+                <br>
+                <br>
+
+                <a href="{% url 'listarAdmin' %}" class="btn btn-danger" id="btn_cancelar" type="submit" style="width: 100px; font-size: large; position: relative; left: 40px;"> Cancelar </a>
+                <input name="local" id="id_local" style="visibility: hidden;"/>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-success" id="btn_salvar" type="submit" style="width: 100px; font-size: large; position: relative; left: 200px; top: -36px;" > Salvar </button>
+                    <div style="visibility: hidden;">
+                        {{ form }}
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-6" id="map" style="height: 500px">
+                <script
+                    src="https://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous">
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function verificaTipo() {
+            var tipo = document.getElementById('id_tipoLocal').value;
+
+            if (tipo == 1) {
+                document.getElementById('btn_salvar').style.top = '-120px';
+                document.getElementById('btn_cancelar').style.top = '-85px';
+                document.getElementById('lbl_numer').style.visibility = 'hidden';
+                document.getElementById('id_numer').style.visibility = 'hidden';
+                document.getElementById('id_numer').value = 0;
+                document.getElementById('id_local').value = 1;
+            } else {
+                document.getElementById('btn_salvar').style.top = '-36px';
+                document.getElementById('btn_cancelar').style.top = '0px';
+                document.getElementById('lbl_numer').style.visibility = 'visible';
+                document.getElementById('id_numer').style.visibility = 'visible';
+                document.getElementById('id_local').value = 0;
+            }
+        }
+        
+        function preencheForm() {
+            document.getElementById('id_tipoLocal').value = document.getElementById('id_tipoLoca').value;
+            document.getElementById('id_rotulo').value = document.getElementById('id_rotul').value;
+            document.getElementById('id_cidade').value = document.getElementById('id_cidad').value;
+            document.getElementById('id_logradouro').value = document.getElementById('id_logradour').value;
+            document.getElementById('id_numero').value = document.getElementById('id_numer').value;
+            initMap();
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <script>
+        var myLatLng = { lat: -19, lng: -44 };
+        var endereco = '';
+
+        //preenchimento do formPersonalizado
+        document.getElementById('id_cidad').value = document.getElementById('id_cidade').value;
+        document.getElementById('id_logradour').value = document.getElementById('id_logradouro').value;
+        document.getElementById('id_numer').value = document.getElementById('id_numero').value;
+        document.getElementById('id_rotul').value = document.getElementById('id_rotulo').value;
+        document.getElementById('id_tipoLoca').value = document.getElementById('id_tipoLocal').value;
+
+        function initMap() {
+            verificaTipo();
+
+            endereco = document.getElementById('id_cidade').value + ',' + document.getElementById('id_logradouro').value + ',' +
+                   document.getElementById('id_numero').value;
+            var urlFinal = "https://maps.googleapis.com/maps/api/geocode/json?address=" + endereco + "+&key=AIzaSyCrA8_ecJlm-M7Pvl2wn3V8BwCylin2FXY";
+
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                url: urlFinal,
+                success: function (data) {
+                    myLatLng.lat = data.results[0].geometry.location.lat;
+                    myLatLng.lng = data.results[0].geometry.location.lng;
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 19,
+                        center: myLatLng
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: document.getElementById('id_rotulo').value
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap"
+        async defer>
+    </script>
+
+
+
+{% endblock %}

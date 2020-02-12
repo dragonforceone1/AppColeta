@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+    <br>
+    <h1>{% if editar %}Editar{% else %}Cadastro{% endif %} de Unidade</h1>
+    <br>
+    <br>
+
+    <div class="container" style="padding: 1%">
+        <div class="row">
+            <div class="col" style="font-size: large">
+                <label>Local: </label>
+                <br>
+                <input class="formStyle" id="id_Local_i" readonly>
+                <br>
+                <br>
+                <label>Associação: </label>
+                <br>
+                <select name="associacao" class="formStyleDiv1" id="id_Associacao_i" onchange="preencheForm()">
+                    {% for associacao in associacoes %}
+                        <option value="{{ associacao.id }}">{{ associacao.nome }}</option>
+                    {% endfor %}
+                </select>
+                <label>Sede: </label>
+                <input type="checkbox" class="formStyleDiv2" style="width: 30px; height: 30px; position: relative; top: 10px" id="id_sed" {% if sede %}checked{% endif %} onchange="preencheCheck()">
+                <br>
+                <br>
+                <label>Horario de Funcionamento: </label>
+                <br>
+                <input class="formStyle" id="id_horarioFuncionament" onchange="preencheForm()">
+                <br>
+                <br>
+                <label>Quantidade de Catadores: </label>
+                <br>
+                <input type="number" class="formStyle" id="id_quantidadeCatadore" onchange="preencheForm()">
+                <br>
+                <br>
+                <label>Dias de Funcionamento: </label>
+                <br>
+                <input class="formStyle" id="id_diasFuncionament" onchange="preencheForm()">
+                <br>
+                <br>
+
+
+                <a href="{% url 'listarAdmin' %}" class="btn btn-danger" id="btn_cancelar" style="width: 100px; font-size: large; position: relative; left: 40px; {% if excluir == 0 %} visibility: hidden{% endif %}"> Cancelar </a>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-success" id="btn_salvar" type="submit" style="width: 100px; font-size: large; position: relative; left: 200px; top: -36px;" > Salvar </button>
+                    <div style="visibility: hidden;">
+                        {{ form }}
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-6" id="map" style="height: 500px">
+                <script
+                    src="https://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous">
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function preencheForm() {
+            document.getElementById('id_Associacao_id').value = document.getElementById('id_Associacao_i').value;
+            document.getElementById('id_horarioFuncionamento').value = document.getElementById('id_horarioFuncionament').value;
+            document.getElementById('id_diasFuncionamento').value = document.getElementById('id_diasFuncionament').value;
+            document.getElementById('id_quantidadeCatadores').value = document.getElementById('id_quantidadeCatadore').value;
+        }
+
+        function preencheCheck() {
+            document.getElementById('id_sede').checked = !(document.getElementById('id_sede').checked);
+        }
+    </script>
+
+    <script>
+        function initMap() {
+            document.getElementById('id_Local_i').value = '{{ local }}';
+            document.getElementById('id_Local_id').value = {{ id }};
+
+            {% if editar %}
+                document.getElementById('id_Associacao_i').value = document.getElementById('id_Associacao_id').value;
+                document.getElementById('id_horarioFuncionament').value = document.getElementById('id_horarioFuncionamento').value;
+                document.getElementById('id_diasFuncionament').value = document.getElementById('id_diasFuncionamento').value;
+                document.getElementById('id_quantidadeCatadore').value = document.getElementById('id_quantidadeCatadores').value;
+            {% endif %}
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: {lat: {{ lat }}, lng: {{ lng }} }
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: {{ lat }}, lng: {{ lng }} },
+                map: map,
+                title: '{{ rotulo }}'
+            });
+        }
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap"
+        async defer>
+    </script>
+
+{% endblock %}

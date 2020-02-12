@@ -1,0 +1,7 @@
+{
+  "name": "AppColeta",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,25 @@
+page-perfil {
+
+  ion-content footer.footer{
+      clear: both;
+      width: 99%;
+      text-align: center;
+  }
+
+  img{
+    width: 40%;
+    height: 40%;
+    border-radius: 200%;
+  }
+
+  button{
+    width: 48%;
+    height: 40%;
+  }
+
+  ion-content button{
+      width: 98%;
+      height: 30%;
+  }
+
+}
