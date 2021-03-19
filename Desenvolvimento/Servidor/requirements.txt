@@ -2,7 +2,7 @@ Django==2.1.5
 django-cors-headers==2.4.0
 django-crispy-forms==1.7.2
 django-tastypie==0.14.2
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 geographiclib==1.49
 geopy==1.18.1
 mysqlclient==1.4.0
